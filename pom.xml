@@ -31,7 +31,7 @@
       <uniqueVersion>true</uniqueVersion>
       <id>mavenapp-snapshots</id>
       <name>mavenapp-snapshots</name>
-      <url>http://34.125.189.126:8081/repository/mavenapp-snapshots/</url>
+      <url>http://34.73.137.145:8081/repository/mavenapp-snapshots/</url>
       <layout>legacy</layout>
     </snapshotRepository>
   </distributionManagement>
