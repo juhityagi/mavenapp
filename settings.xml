@@ -8,7 +8,7 @@
           <password>admin123</password>
         </server>
         <server>
-          <id>mavenapp-releases</id>
+          <id>maven-releases</id>
           <username>mavenapp-user</username>
           <password>admin123</password>
         </server>
