@@ -20,6 +20,7 @@ pipeline {
                sh 'mvn -f pom.xml -s settings.xml clean deploy'
                sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.73.137.145:9000 -Dsonar.login=${SonarCred}'
             }
+        }
       stage ("SonarQube Quality Gate Check") { 
         steps { 
           script{
@@ -41,6 +42,6 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
-        }
+        
     }
 }
