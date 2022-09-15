@@ -18,27 +18,27 @@ pipeline {
             steps {
                 
                sh 'mvn -f pom.xml -s settings.xml clean deploy'
-               //sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.73.137.145:9000 -Dsonar.login=${SonarCred}'
+               sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.73.137.145:9000 -Dsonar.login=${SonarCred}'
             }
         }
-      stage("Build, Test and Quality Gate Analysis") {
-      steps {
-          withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar'){
-          sh 'mvn clean verify sonar:sonar'
-        }
-      }
-      }
-      stage ("SonarQube Quality Gate Check") { 
-        steps { 
-          script{
-              timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
-              def qualitygate = waitForQualityGate() 
-               if (qualitygate.status != "OK") { 
-                    error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}" 
-                  }
-              } 
-            }
-         }
+    //  stage("Build, Test and Quality Gate Analysis") {
+    //  steps {
+    //      withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar'){
+      //    sh 'mvn clean verify sonar:sonar'
+   //     }
+    //  }
+ //     }
+  //    stage ("SonarQube Quality Gate Check") { 
+   //     steps { 
+   //       script{
+    //          timeout(time: 1, unit: 'HOURS') { // Just in case something goes wrong, pipeline will be killed after a timeout
+     //         def qualitygate = waitForQualityGate() 
+     //          if (qualitygate.status != "OK") { 
+      //              error "Pipeline aborted due to quality gate coverage failure: ${qualitygate.status}" 
+    //              }
+     //         } 
+    //        }
+    //     }
      
         post {
                 // If Maven was able to run the tests, even if some of the test
