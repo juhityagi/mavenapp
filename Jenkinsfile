@@ -24,7 +24,6 @@ pipeline {
   -Dsonar.login=sqp_42288706c031eef1ac697ec1908692306257a2cb'
               // sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.73.137.145:9000 -Dsonar.login=${SonarCred}'
             }
-        }
     //  stage("Build, Test and Quality Gate Analysis") {
     //  steps {
     //      withSonarQubeEnv(credentialsId: 'sonar', installationName: 'sonar'){
@@ -52,6 +51,7 @@ pipeline {
                     archiveArtifacts 'target/*.jar'
                 }
             }
+        }
       }
     }
 
