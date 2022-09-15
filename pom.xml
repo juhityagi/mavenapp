@@ -18,7 +18,9 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-     <plugins>
+  </dependencies>
+  <build>
+        <plugins>
         <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>sonar-maven-plugin</artifactId>
@@ -37,7 +39,7 @@
             <artifactId>maven-surefire-plugin</artifactId>
         </plugin>
     </plugins>
-  </dependencies>
+  </build>
   <distributionManagement>
     <repository>
       <uniqueVersion>false</uniqueVersion>
