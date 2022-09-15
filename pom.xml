@@ -35,10 +35,4 @@
       <layout>legacy</layout>
     </snapshotRepository>
   </distributionManagement>
-  <plugins>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
 </project>
