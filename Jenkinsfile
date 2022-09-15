@@ -18,7 +18,7 @@ pipeline {
                 sh 'mvn clean verify sonar:sonar \
   -Dsonar.projectKey=ps1-app \
   -Dsonar.host.url=http://34.73.137.145:9000 \
-  -Dsonar.login=sqp_b5e25543653f756f3f7d599fe86c490c6410373a'
+  -Dsonar.login=sqa_f51da5cba002b56d436caa6dd259293523a5d78a'
      }
      
         post {
