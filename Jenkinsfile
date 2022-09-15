@@ -16,9 +16,9 @@ pipeline {
                 
                sh 'mvn -f pom.xml -s settings.xml clean deploy'
                 sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=ps1-app \
+  -Dsonar.projectKey=maven \
   -Dsonar.host.url=http://34.73.137.145:9000 \
-  -Dsonar.login=sqa_f51da5cba002b56d436caa6dd259293523a5d78a'
+  -Dsonar.login=sqa_bb9d0c61f41e486b57ee9094751712e818a468b6'
      }
      
         post {
