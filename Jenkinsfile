@@ -1,35 +1,37 @@
+@Library('pipeline-library-demo')_
 
-pipeline {
-    agent any
-    tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "maven-3.8.6"
+def abc(String name = 'human') {
+  echo "welcome to ${name} Program."
+  echo "welcome to, ${name} practice."
+}
+node {
+    def mvnHome
+    
+     stage("Ref lib"){
+      abc "DevOps"
     }
-    stages {
-        stage('prep') {
-            steps {
-                git branch: 'main', url: 'https://github.com/juhityagi/mavenapp/'
+    
+    stage("shared lib"){
+      sayHello "DevOps"
+    }
+    stage('Preparation') { 
+       
+        git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+        
+        mvnHome = tool 'M3'
+    }
+    stage('Build') {
+        
+        withEnv(["MVN_HOME=$mvnHome"]) {
+            if (isUnix()) {
+                sh '"$MVN_HOME/bin/mvn" -Dmaven.test.failure.ignore clean package'
+            } else {
+                bat(/"%MVN_HOME%\bin\mvn" -Dmaven.test.failure.ignore clean package/)
             }
         }
-        stage('build') {
-            steps {
-                
-               sh 'mvn -f pom.xml -s settings.xml clean deploy'
-                sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=ps1-app \
-  -Dsonar.host.url=http://34.73.137.145:9000 \
-  -Dsonar.login=sqp_b5e25543653f756f3f7d599fe86c490c6410373a'
-     }
-     
-        post {
-                // If Maven was able to run the tests, even if some of the test
-                // failed, record the test results and archive the jar file.
-                success {
-                    junit '**/target/surefire-reports/TEST-*.xml'
-                    archiveArtifacts 'target/*.jar'
-                }
-            }
-        }
-      }
     }
-
+    stage('Results') {
+        junit '**/target/surefire-reports/TEST-*.xml'
+        archiveArtifacts 'target/*.jar'
+    }
+}
