@@ -23,7 +23,7 @@ pipeline {
         }
       stage("Build, Test and Quality Gate Analysis") {
       steps {
-        withSonarQubeEnv('Sonarqube') {
+          withSonarQubeEnv(credentialsId: 'sonarcred') {
           sh 'mvn clean verify sonar:sonar -PintegrationTest'
         }
       }
