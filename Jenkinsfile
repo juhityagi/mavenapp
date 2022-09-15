@@ -13,8 +13,9 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh 'mvn clean verify sonar:sonar'
+                
                sh 'mvn -f pom.xml -s settings.xml clean deploy'
+                sh 'mvn clean verify sonar:sonar'
             }
         
         post {
