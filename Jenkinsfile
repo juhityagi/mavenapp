@@ -18,10 +18,7 @@ pipeline {
             steps {
                 
                sh 'mvn -f pom.xml -s settings.xml clean deploy'
-               // sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.73.137.145:9000 -Dsonar.login=${SonarCred}'
-                withSonarQubeEnv(credentialsId: 'Sonarqube', installationName: 'sonar'){
-                     sh 'mvn clean verify sonar:sonar'
-                }
+               sh 'mvn clean verify sonar:sonar  -Dsonar.projectKey=mavenapp -Dsonar.host.url=http://34.73.137.145:9000 -Dsonar.login=${SonarCred}'
             }
         
         post {
