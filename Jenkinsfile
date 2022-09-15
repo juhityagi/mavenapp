@@ -27,6 +27,7 @@ pipeline {
           sh 'mvn clean verify sonar:sonar -PintegrationTest'
         }
       }
+      }
       stage ("SonarQube Quality Gate Check") { 
         steps { 
           script{
