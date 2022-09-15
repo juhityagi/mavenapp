@@ -1,9 +1,6 @@
 
 pipeline {
     agent any
-      environment {
-    SonarCred= credentials('Sonarqube')
-  }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
         maven "maven-3.8.6"
@@ -19,9 +16,9 @@ pipeline {
                 
                sh 'mvn -f pom.xml -s settings.xml clean deploy'
                 sh 'mvn clean verify sonar:sonar \
-  -Dsonar.projectKey=maven \
+  -Dsonar.projectKey=ps1-app \
   -Dsonar.host.url=http://34.73.137.145:9000 \
-  -Dsonar.login=sqp_42288706c031eef1ac697ec1908692306257a2cb'
+  -Dsonar.login=sqp_b5e25543653f756f3f7d599fe86c490c6410373a'
      }
      
         post {
