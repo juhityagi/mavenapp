@@ -2,7 +2,7 @@
 pipeline {
     agent any
       environment {
-    SonarCred= "${Sonarqube}"
+    SonarCred= credentials('Sonarqube')
   }
     tools {
         // Install the Maven version configured as "M3" and add it to the path.
